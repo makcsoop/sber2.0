@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <header>
-    <div class="wrap-logo">
+    <!-- <div class="wrap-logo">
         <a href="#logo" class="logo">Интернет магазин</a>
     </div>
     <nav>
@@ -15,6 +18,30 @@
         <a href="#about">О нас</a>
         <a href="/login">Войти</a>
         <a href="/register">Регистрация</a>
+    </nav> -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <input type="checkbox" name="" id="">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#food">Виды блюд</a></li>
+                <li><a href="#food-menu">Меню</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="/login">Вход</a></li>
+                <li><a>
+                    <button class="cart" id="cart">
+                        <img class="cart__image" src="https://w7.pngwing.com/pngs/834/52/png-transparent-black-background-shopping-cart-icon.png" alt="Корз" srcset=""/>
+                        <div class="cart__num" id="cart_num">0</div>
+                    </button></a>
+                </li>
+            </ul>
+            <h1 class="logo">"Copy Star"</h1>
+        </div>
     </nav>
 </header>
 {% block content %}{% endblock %}
