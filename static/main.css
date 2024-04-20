@@ -22,7 +22,7 @@ body {
 }
 
 .frame {
-  height: 575px;
+  height: 725px;
   width: 430px;
   background:
     -webkit-linear-gradient(
@@ -217,7 +217,7 @@ li {
 	padding-left: 15px;
 	border: none;
 	border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background: rgba(255,255,255,.2);
 }
 
