@@ -18,13 +18,14 @@ class User(SqlAlchemyBase):
 
 
 class Orders(SqlAlchemyBase):
-    tablename = 'orders'
+    __tablename__ = 'orders'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     quality = sqlalchemy.Column(
         sqlalchemy.Integer)  # кол - во заказов    status = sqlalchemy.Column(sqlalchemy.Integer) #(По умолчанию)Новые 0, подтвержденные 1, отмененные 2    created_date = sqlalchemy.Column(sqlalchemy.DateTime,                                      default=datetime.datetime.now)
 
 
 class Products(SqlAlchemyBase):
+    __tablename__ = 'products'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String)
     quality = sqlalchemy.Column(
