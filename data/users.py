@@ -27,14 +27,18 @@ class Orders(SqlAlchemyBase):
 class Products(SqlAlchemyBase):
     __tablename__ = 'products'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    images = sqlalchemy.Column(sqlalchemy.String)
     name = sqlalchemy.Column(sqlalchemy.String)
+    prise = sqlalchemy.Column(sqlalchemy.Integer)
     quality = sqlalchemy.Column(
         sqlalchemy.Integer)  # количесвто, < наличие    nal = sqlalchemy.Column(sqlalchemy.Integer) # наличие    created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
+    notes = sqlalchemy.Column(sqlalchemy.String)
+    data = sqlalchemy.Column(sqlalchemy.DateTime)
 
-    # админ class Orders(SqlAlchemyBase):
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    status = sqlalchemy.Column(
-        sqlalchemy.Integer)  # (По умолчанию)Новые 0, подтвержденные 1, отмененные 2    time = sqlalchemy.Column(sqlalchemy.Integer) # время заказа    userName = sqlalchemy.Column(sqlalchemy.Integer) # фио заказчика
+    # # админ class Orders(SqlAlchemyBase):
+    # id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    # status = sqlalchemy.Column(
+    #     sqlalchemy.Integer)  # (По умолчанию)Новые 0, подтвержденные 1, отмененные 2    time = sqlalchemy.Column(sqlalchemy.Integer) # время заказа    userName = sqlalchemy.Column(sqlalchemy.Integer) # фио заказчика
 
 
     

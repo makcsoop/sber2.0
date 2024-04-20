@@ -26,6 +26,7 @@ user_info = []
 submit_info = []
 current_info_menu = []
 all_info_ticket = None
+all_prodict = []
 
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
@@ -122,11 +123,26 @@ def open_current_menu():
         i = list(i)
     current_menu = cursor.execute(f"""SELECT name, time, value, price, count FROM current_menu ORDER BY time""").fetchall()
 
+# def get_all_product():
+#     global all_prodict
+#     connect = sqlite3.connect('db/user.db')
+#     cursor = connect.cursor()
+#     all_info = cursor.execute(f"""SELECT * FROM products""").fetchall()
+#     final = []
+#     for i in all_info:
+#         final.append(list(i))
+#     all_prodict = final
+    
+    
+
+
+
 
 open_current_menu()
 open_data()
 open_ticket()
 open_menu()
+#get_all_product()
 
 
 with open('static/data.json', 'w', encoding='utf-8') as file:
@@ -153,11 +169,12 @@ def generator_log():
 # @app.route('/')
 # def index():
 #     return render_template('index.html', obj=all_info)
-db_session.global_init('main.db')
+db_session.global_init('db/user.db')
 db_sess = db_session.create_session()
 @app.route('/')
 def index():
-    return render_template('home.html')
+    global all_prodict
+    return render_template('home.html', current_menu=all_prodict)
 
 @app.route('/login')
 def login_form():
