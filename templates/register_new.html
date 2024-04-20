@@ -74,6 +74,7 @@
                     {{ error }}
                 </div>
             {% endfor %}
+        <p>{{ form.rules() }} {{ form.rules.label }}</p>
 
         <p>{{ form.submit(type="submit", class="btn-signin", id="sign_in") }}</p>
         <div>{{ message }}</div>
