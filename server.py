@@ -1,8 +1,9 @@
+import sqlalchemy
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_login import LoginManager, login_user
 from data import db_session
 from flask_wtf import FlaskForm
-from data.db_session import global_init
+from data.db_session import global_init, SqlAlchemyBase
 from data.users import User
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, EmailField
 from wtforms.validators import DataRequired
@@ -37,7 +38,7 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 class LoginForm(FlaskForm):
-    email = EmailField('Почта', validators=[DataRequired()])
+    login = EmailField('Почта', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     remember_me = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
@@ -53,7 +54,26 @@ class RegisterForm(FlaskForm):
     rules = BooleanField('rules')
     submit = SubmitField('Submit')
 
+########################BEGIN
+class Orders(SqlAlchemyBase):
+    tablename = 'orders'
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    quality = sqlalchemy.Column(
+        sqlalchemy.Integer)  # кол - во заказов    status = sqlalchemy.Column(sqlalchemy.Integer) #(По умолчанию)Новые 0, подтвержденные 1, отмененные 2    created_date = sqlalchemy.Column(sqlalchemy.DateTime,                                      default=datetime.datetime.now)
 
+
+class Products(SqlAlchemyBase):
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    name = sqlalchemy.Column(sqlalchemy.String)
+    quality = sqlalchemy.Column(
+        sqlalchemy.Integer)  # количесвто, < наличие    nal = sqlalchemy.Column(sqlalchemy.Integer) # наличие    created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
+
+    # админ class Orders(SqlAlchemyBase):
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    status = sqlalchemy.Column(
+        sqlalchemy.Integer)  # (По умолчанию)Новые 0, подтвержденные 1, отмененные 2    time = sqlalchemy.Column(sqlalchemy.Integer) # время заказа    userName = sqlalchemy.Column(sqlalchemy.Integer) # фио заказчика
+
+###########################END
 def send_email(message, getters):
     sender = "maroz15official@gmail.com"
     getter = 'znv10324@omeie.com'
@@ -152,10 +172,26 @@ def generator_log():
 # @app.route('/')
 # def index():
 #     return render_template('index.html', obj=all_info)
+db_session.global_init('main.db')
+db_sess = db_session.create_session()
 @app.route('/')
 def index():
     return render_template('home.html')
 
+@app.route('/login')
+def login_form():
+    form = LoginForm()
+    if form.validate_on_submit():
+        login_cur = db_sess.query(User).filter(User.login == form.login.data).first()
+        if not login_cur:
+            return render_template('index.html', title='Авторизация',
+                                   form=form,
+                                   message="Такого пользователя не существует")
+        elif login_cur.password != form.password.data:
+            return render_template('index.html', title='Авторизация',
+                                   form=form,
+                                   message="Неверный пароль")
+    return render_template('register_new.html', title='Авторизация', form=form)
 
 @app.route('/table-edit', methods=['GET', 'POST'])
 def table_edit():
