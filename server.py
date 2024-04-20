@@ -1,4 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_login import LoginManager, login_user
+from data import db_session
+from flask_wtf import FlaskForm
+from data.db_session import global_init
+from data.users import User
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, EmailField
+from wtforms.validators import DataRequired
 import urllib
 import random
 import sqlite3
@@ -18,6 +25,35 @@ user_info = []
 submit_info = []
 current_info_menu = []
 all_info_ticket = None
+
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
+
+class LoginForm(FlaskForm):
+    email = EmailField('Почта', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    remember_me = BooleanField('Запомнить меня')
+    submit = SubmitField('Войти')
+
+class RegisterForm(FlaskForm):
+    login = StringField('Login', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    email = EmailField('Email', validators=[DataRequired()])
+    repeat_password = PasswordField('Repeat password', validators=[DataRequired()])
+    surname = StringField('Surname', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
+    age = StringField('Age', validators=[DataRequired()])
+    position = StringField('Position', validators=[DataRequired()])
+    speciality = StringField('Speciality', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
 
 def send_email(message, getters):
@@ -258,4 +294,5 @@ def order():
 
 if __name__ == '__main__':
     app.debug = True
+    db_session.global_init("db/user.db")
     app.run(host="localhost", port=5050)
