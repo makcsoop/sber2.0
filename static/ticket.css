@@ -1,0 +1,106 @@
+body {
+	background: #f0f1f2;
+	font:12px "Open Sans", sans-serif;
+    background-image: url(https://catherineasquithgallery.com/uploads/posts/2023-02/thumbs/1676629281_catherineasquithgallery-com-p-zelenii-fon-sberbanka-122.jpg);
+    background-size: 100%;
+}
+
+.titles{
+	width: 140px;
+	float: left;
+}
+
+#form_message{
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	border-radius: 15px;
+	margin:10px;
+	padding: 10px;
+	width: 320px;
+	height: 500px;
+	background: #FFFFFF;
+	margin: 50px auto;
+	background-image: url(https://img.freepik.com/free-photo/abstract-gradient-neon-lights_23-2149279180.jpg);
+	background-size: 300%;
+
+
+}
+
+#form_message input,textarea{
+	border-radius: 15px;
+	width: 170px;
+}
+
+#submit{
+	height: 50px;
+	margin: 0 auto;
+	display: block;
+}
+
+#form_message h2{
+	text-align: center;
+}
+
+.admin_answer{
+    width: 120px;
+}
+
+#admin{
+    width: 315px;
+    height: 150px;
+}
+
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.enter{
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #00FF00;
+  border: 2px solid #;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+  background-color: #1414b8;
+}
+
+.enter span{
+  position: relative;
+  z-index: 2;
+}
+
+.enter:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ff003b;
+  transition: all .35s;
+  background-color: #FFFFFF;
+}
+
+.enter:hover{
+  color: #000000;
+  background-color: #00ff00;
+}
+
+.enter:hover:after{
+  width: 100%;
+}
+
+#main{
+    margin: auto;
+    text-align: center;
+}
+

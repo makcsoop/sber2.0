@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@antonz/sqlite": "^3.40.0",
+    "sqlime": "^0.1.5",
+    "sqlite3": "^5.1.6"
+  }
+}
