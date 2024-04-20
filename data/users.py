@@ -16,6 +16,26 @@ class User(SqlAlchemyBase):
     level = sqlalchemy.Column(sqlalchemy.Integer)
     password = sqlalchemy.Column(sqlalchemy.String)
 
+
+class Orders(SqlAlchemyBase):
+    tablename = 'orders'
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    quality = sqlalchemy.Column(
+        sqlalchemy.Integer)  # кол - во заказов    status = sqlalchemy.Column(sqlalchemy.Integer) #(По умолчанию)Новые 0, подтвержденные 1, отмененные 2    created_date = sqlalchemy.Column(sqlalchemy.DateTime,                                      default=datetime.datetime.now)
+
+
+class Products(SqlAlchemyBase):
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    name = sqlalchemy.Column(sqlalchemy.String)
+    quality = sqlalchemy.Column(
+        sqlalchemy.Integer)  # количесвто, < наличие    nal = sqlalchemy.Column(sqlalchemy.Integer) # наличие    created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
+
+    # админ class Orders(SqlAlchemyBase):
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    status = sqlalchemy.Column(
+        sqlalchemy.Integer)  # (По умолчанию)Новые 0, подтвержденные 1, отмененные 2    time = sqlalchemy.Column(sqlalchemy.Integer) # время заказа    userName = sqlalchemy.Column(sqlalchemy.Integer) # фио заказчика
+
+
     
 
 
